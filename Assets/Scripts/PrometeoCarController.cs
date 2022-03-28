@@ -112,13 +112,15 @@ public class PrometeoCarController : MonoBehaviour
       public bool isDrifting; // Used to know whether the car is drifting or not.
       [HideInInspector]
       public bool isTractionLocked; // Used to know whether the traction of the car is locked or not.
+      [HideInInspector]
+      public float carHealth; // Used to store the speed of the car.
 
     //PRIVATE VARIABLES
 
-      /*
-      IMPORTANT: The following variables should not be modified manually since their values are automatically given via script.
-      */
-      Rigidbody carRigidbody; // Stores the car's rigidbody.
+    /*
+    IMPORTANT: The following variables should not be modified manually since their values are automatically given via script.
+    */
+    Rigidbody carRigidbody; // Stores the car's rigidbody.
       float steeringAxis; // Used to know whether the steering wheel has reached the maximum value. It goes from -1 to 1.
       float throttleAxis; // Used to know whether the throttle has reached the maximum value. It goes from -1 to 1.
       float driftingAxis;
@@ -221,7 +223,6 @@ public class PrometeoCarController : MonoBehaviour
             RRWTireSkid.emitting = false;
           }
         }
-
     }
 
     // Update is called once per frame
@@ -686,6 +687,11 @@ public class PrometeoCarController : MonoBehaviour
 
         driftingAxis = 0f;
       }
+    }
+
+    public void SetCarHealth(float value)
+    {
+        this.carHealth = value;
     }
 
 }
