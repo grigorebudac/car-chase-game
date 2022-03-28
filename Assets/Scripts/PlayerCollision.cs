@@ -25,6 +25,7 @@ public class PlayerCollision : MonoBehaviour
         }
 
         Debug.Log("---> health: " + healthController.GetHealth());
+        car.SetCarHealth(healthController.GetHealth());
     }
 
     private void HitWall(float carSpeed)
