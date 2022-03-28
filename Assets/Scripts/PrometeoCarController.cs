@@ -112,6 +112,8 @@ public class PrometeoCarController : MonoBehaviour
   public bool isDrifting; // Used to know whether the car is drifting or not.
   [HideInInspector]
   public bool isTractionLocked; // Used to know whether the traction of the car is locked or not.
+  [HideInInspector]
+  public float carHealth; // Used to store the speed of the car.
 
   //PRIVATE VARIABLES
 
@@ -139,20 +141,9 @@ public class PrometeoCarController : MonoBehaviour
   WheelFrictionCurve RRwheelFriction;
   float RRWextremumSlip;
 
-  //CAR CONTROLS SETUP
-  string verticalAxis; // The name of the vertical axis.
-  string horizontalAxis; // The name of the horizontal axis.
-
-
   // Start is called before the first frame update
   void Start()
   {
-
-    string gameObjectTAG = gameObject.tag;
-
-    verticalAxis = gameObject.tag == "PoliceCar" ? "PoliceVertical" : "Vertical";
-    horizontalAxis = gameObject.tag == "PoliceCar" ? "PoliceHorizontal" : "Horizontal";
-
     //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
     //gameObject. Also, we define the center of mass of the car with the Vector3 given
     //in the inspector.
@@ -247,7 +238,6 @@ public class PrometeoCarController : MonoBehaviour
         RRWTireSkid.emitting = false;
       }
     }
-
   }
 
   // Update is called once per frame
@@ -822,6 +812,11 @@ public class PrometeoCarController : MonoBehaviour
 
       driftingAxis = 0f;
     }
+  }
+
+  public void SetCarHealth(float value)
+  {
+    this.carHealth = value;
   }
 
 }
