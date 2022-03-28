@@ -140,10 +140,18 @@ public class PrometeoCarController : MonoBehaviour
   float RLWextremumSlip;
   WheelFrictionCurve RRwheelFriction;
   float RRWextremumSlip;
+  string verticalAxis; // The name of the vertical axis.
+  string horizontalAxis; // The name of the horizontal axis.
+
 
   // Start is called before the first frame update
   void Start()
   {
+
+    string gameObjectTAG = gameObject.tag;
+
+    verticalAxis = gameObject.tag == "PoliceCar" ? "PoliceVertical" : "Vertical";
+    horizontalAxis = gameObject.tag == "PoliceCar" ? "PoliceHorizontal" : "Horizontal";
     //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
     //gameObject. Also, we define the center of mass of the car with the Vector3 given
     //in the inspector.
