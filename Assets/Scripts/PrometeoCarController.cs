@@ -221,7 +221,6 @@ public class PrometeoCarController : MonoBehaviour
             RRWTireSkid.emitting = false;
           }
         }
-
     }
 
     // Update is called once per frame

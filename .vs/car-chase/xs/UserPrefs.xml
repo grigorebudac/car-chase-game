@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{9DE6D69C-9517-F44B-41F6-2739BCA53A72}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerCollision.cs">
+    <Files>
+      <File FileName="Assets/Scripts/HealthController.cs" Line="32" Column="2" />
+      <File FileName="Assets/Scripts/PrometeoCarController.cs" Line="225" Column="9" />
+      <File FileName="Assets/Scripts/PlayerCollision.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="car-chase" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="PlayerCollision.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="44a198de-abb5-4bd3-87e3-c3d230b32873" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
