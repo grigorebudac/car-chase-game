@@ -20,17 +20,26 @@ public class PlayerCollision : MonoBehaviour
             case "Wall":
                 this.HitWall(car.carSpeed);
                 break;
+            case "Police":
+                PrometeoCarController policeCar = collision.gameObject.GetComponent<PrometeoCarController>();
+                this.HitByPoliceCar(policeCar.carSpeed);
+                break;
             default:
                 break;
         }
 
-        Debug.Log("---> health: " + healthController.GetHealth());
         car.SetCarHealth(healthController.GetHealth());
     }
 
     private void HitWall(float carSpeed)
     {
         float damage = carSpeed / 10f;
+        healthController.TakeDamage(damage);
+    }
+
+    private void HitByPoliceCar(float policeCarSpeed)
+    {
+        float damage = policeCarSpeed / 5f;
         healthController.TakeDamage(damage);
     }
 }
