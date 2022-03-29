@@ -20,7 +20,8 @@ public class PlayerCollision : MonoBehaviour
             case "Wall":
                 this.HitWall(car.carSpeed);
                 break;
-            case "Police":
+            case "PoliceNPC":
+            case "PolicePlayer":
                 PrometeoCarController policeCar = collision.gameObject.GetComponent<PrometeoCarController>();
                 this.HitByPoliceCar(policeCar.carSpeed);
                 break;

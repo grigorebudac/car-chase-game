@@ -21,7 +21,7 @@ public class Police : MonoBehaviour
     {
         float refreshRate = 0.25f;
 
-        while(target != null)
+        while (target != null)
         {
             Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
             pathFinder.SetDestination(targetPosition);

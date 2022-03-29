@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class SpawnPoliceCar : MonoBehaviour
 {
-  [SerializeField] private GameObject prefab;
-  [SerializeField] private float spawnDelay = 3;
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private float spawnDelay = 3;
 
-  Transform playerTarget;
-  private float nextSpawnTime;
+    Transform playerTarget;
+    private float nextSpawnTime;
 
-  private void Start()
-  {
-    playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
-  }
-
-  private void Update()
-  {
-    if (ShouldSpawn())
+    private void Start()
     {
-      Spawn();
+        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
     }
-  }
 
-  public void Spawn()
-  {
-    float x = playerTarget.position.x - Random.Range(10, 30);
-    float z = playerTarget.position.z - Random.Range(10, 30);
+    private void Update()
+    {
+        if (ShouldSpawn())
+        {
+            Spawn();
+        }
+    }
 
-    Vector3 spawnPosition = new Vector3(x, 0, z);
-    Instantiate(prefab, spawnPosition, Quaternion.identity);
+    public void Spawn()
+    {
+        float x = playerTarget.position.x - Random.Range(10, 30);
+        float z = playerTarget.position.z - Random.Range(10, 30);
 
-    nextSpawnTime = Time.time + spawnDelay;
-  }
+        Vector3 spawnPosition = new Vector3(x, 1f, z);
+        Instantiate(prefab, spawnPosition, Quaternion.identity);
 
-  private bool ShouldSpawn()
-  {
-    return Time.time >= nextSpawnTime;
-  }
+        nextSpawnTime = Time.time + spawnDelay;
+    }
+
+    private bool ShouldSpawn()
+    {
+        return Time.time >= nextSpawnTime;
+    }
 }
