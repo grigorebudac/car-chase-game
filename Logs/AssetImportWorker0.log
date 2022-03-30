@@ -1978,3 +1978,11 @@ Received Import Request.
 Start importing Assets/Effects/Particle Systems/Meshes using Guid(4ce140c3a95bdff41925f4160c53ec72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6915d70c8a66505dd281dbab8a03e77c') in 0.001350 seconds 
   Import took 0.005768 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 1433.005577 seconds.
+  path: Assets/Scenes/Demo.unity
+  artifactKey: Guid(d05c07244ed6a3740be3bdad186521e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Demo.unity using Guid(d05c07244ed6a3740be3bdad186521e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b72b4cfee5ed2035c41e29b245170041') in 0.084734 seconds 
+  Import took 0.140424 seconds .
+
