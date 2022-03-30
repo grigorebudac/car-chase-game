@@ -17,10 +17,10 @@ public class SpawnPoliceCar : MonoBehaviour
 
     private void Update()
     {
-        if(ShouldSpawn())
+        if (ShouldSpawn())
         {
             Spawn();
-        }        
+        }
     }
 
     public void Spawn()
@@ -28,7 +28,7 @@ public class SpawnPoliceCar : MonoBehaviour
         float x = playerTarget.position.x - Random.Range(10, 30);
         float z = playerTarget.position.z - Random.Range(10, 30);
 
-        Vector3 spawnPosition = new Vector3(x, 0, z);
+        Vector3 spawnPosition = new Vector3(x, 1f, z);
         Instantiate(prefab, spawnPosition, Quaternion.identity);
 
         nextSpawnTime = Time.time + spawnDelay;
