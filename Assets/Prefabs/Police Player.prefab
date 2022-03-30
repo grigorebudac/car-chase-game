@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 1916923327350682396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.9120018, y: -2.666372, z: 3.82}
-  m_LocalScale: {x: 1, y: 1, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012238422850841256}
   m_RootOrder: 3
@@ -805,10 +805,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 250
   maxReverseSpeed: 45
-  accelerationMultiplier: 6
-  maxSteeringAngle: 27
+  accelerationMultiplier: 9
+  maxSteeringAngle: 35
   steeringSpeed: 0.5
-  brakeForce: 350
+  brakeForce: 450
   decelerationMultiplier: 2
   handbrakeDriftMultiplier: 5
   bodyMassCenter: {x: 0, y: 0, z: 0}
@@ -820,11 +820,11 @@ MonoBehaviour:
   rearLeftCollider: {fileID: 1916923328727033538}
   rearRightMesh: {fileID: 1916923328826542209}
   rearRightCollider: {fileID: 1916923327059368255}
-  useEffects: 0
-  RLWParticleSystem: {fileID: 0}
-  RRWParticleSystem: {fileID: 0}
-  RLWTireSkid: {fileID: 0}
-  RRWTireSkid: {fileID: 0}
+  useEffects: 1
+  RLWParticleSystem: {fileID: 2374354178958530489}
+  RRWParticleSystem: {fileID: 253747651500464851}
+  RLWTireSkid: {fileID: 7959481435951228382}
+  RRWTireSkid: {fileID: 8840178426350667256}
   useUI: 0
   carSpeedText: {fileID: 0}
   useSounds: 0
@@ -981,7 +981,7 @@ Transform:
   m_GameObject: {fileID: 1916923328445352268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.910651, y: -2.6662521, z: -4.81}
-  m_LocalScale: {x: 1, y: 1, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012238422850841256}
   m_RootOrder: 0
@@ -1062,7 +1062,7 @@ Transform:
   m_GameObject: {fileID: 1916923328473202286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.910506, y: -2.666377, z: 3.82}
-  m_LocalScale: {x: 1, y: 1, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012238422850841256}
   m_RootOrder: 2
@@ -1236,7 +1236,7 @@ Transform:
   m_GameObject: {fileID: 1916923328826542209}
   m_LocalRotation: {x: -0.0028246653, y: -0.00004911988, z: -0.00007619799, w: 0.999996}
   m_LocalPosition: {x: 2.9120052, y: -2.6662476, z: -4.8000007}
-  m_LocalScale: {x: 1, y: 1, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012238422850841256}
   m_RootOrder: 1
