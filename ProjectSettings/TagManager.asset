@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Police
+  - Health
   layers:
   - Default
   - TransparentFX

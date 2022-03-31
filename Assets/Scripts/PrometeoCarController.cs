@@ -113,7 +113,7 @@ public class PrometeoCarController : MonoBehaviour
       [HideInInspector]
       public bool isTractionLocked; // Used to know whether the traction of the car is locked or not.
       [HideInInspector]
-      public float carHealth; // Used to store the speed of the car.
+      public HealthController carHealth = new HealthController();
 
     //PRIVATE VARIABLES
 
@@ -688,10 +688,4 @@ public class PrometeoCarController : MonoBehaviour
         driftingAxis = 0f;
       }
     }
-
-    public void SetCarHealth(float value)
-    {
-        this.carHealth = value;
-    }
-
 }
