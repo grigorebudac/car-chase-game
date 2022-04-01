@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 4638978038992408960}
   - component: {fileID: 1916923328283119558}
   m_Layer: 0
-  m_Name: Colider
+  m_Name: CarCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
