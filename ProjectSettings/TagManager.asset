@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
-  - PoliceNPC
-  - PolicePlayer
+  - Police
+  - Health
   layers:
   - Default
   - TransparentFX
