@@ -15,7 +15,8 @@ public class PlayerCollision : MonoBehaviour
             case "Wall":
                 damageTaken = this.GetHitByWallDamage(car.carSpeed);
                 break;
-            case "Police":
+            case "PoliceNPC":
+            case "PolicePlayer":
                 PrometeoCarController policeCar = collision.gameObject.GetComponent<PrometeoCarController>();
                 damageTaken = this.GetHitByPoliceCarDamage(policeCar.carSpeed);
                 break;

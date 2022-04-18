@@ -5,9 +5,9 @@ using UnityEngine;
 public class SirenEffect : MonoBehaviour
 {
     [SerializeField] private GameObject redLight;
-    [SerializeField] private GameObject blueLight; 
+    [SerializeField] private GameObject blueLight;
     [SerializeField] private int speed;
-    
+
     private Vector3 redTemp;
     private Vector3 blueTemp;
 
