@@ -301,9 +301,9 @@ public class PrometeoCarController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            CancelInvoke("DecelerateCar");
-            deceleratingCar = false;
-            Handbrake();
+            // CancelInvoke("DecelerateCar");
+            // deceleratingCar = false;
+            // Handbrake();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {

@@ -9,14 +9,13 @@ public class Police : MonoBehaviour
 
     private Rigidbody myBody;
     [SerializeField]
-    private float speed = 50f, rotatingSpeed = 20f;
+    private float speed = 60f, rotatingSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
     {
         myBody = GetComponent<Rigidbody>();
         target = GameObject.FindGameObjectWithTag("Player");
-
     }
 
     void Update()
