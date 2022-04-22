@@ -111,8 +111,6 @@ public class PrometeoCarController : MonoBehaviour
     public bool isDrifting; // Used to know whether the car is drifting or not.
     [HideInInspector]
     public bool isTractionLocked; // Used to know whether the traction of the car is locked or not.
-    [HideInInspector]
-    public HealthController carHealth = new HealthController();
 
     //PRIVATE VARIABLES
 

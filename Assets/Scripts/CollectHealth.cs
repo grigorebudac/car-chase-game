@@ -6,7 +6,7 @@ public class CollectHealth : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        other.GetComponentInParent<PrometeoCarController>().carHealth.Heal(10);
+        other.GetComponentInParent<PlayerController>().Heal(10);
         Destroy(gameObject);
     }
 }

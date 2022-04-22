@@ -8,6 +8,8 @@ public class PlayerCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
+        PlayerController playerCar = gameObject.GetComponent<PlayerController>();
+
         float damageTaken = 0;
 
         switch (collision.gameObject.tag)
@@ -24,7 +26,7 @@ public class PlayerCollision : MonoBehaviour
                 break;
         }
 
-        car.carHealth.TakeDamage(damageTaken);
+        playerCar.TakeDamage(damageTaken);
     }
 
     private float GetHitByWallDamage(float carSpeed)
