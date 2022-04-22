@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MineController : MonoBehaviour
 {
-    [SerializeField] private float _explosionRadius = 5;
-    [SerializeField] private float _explosionForce = 50000;
+    
     [SerializeField] private GameObject _particles;
+    
+    private float _explosionRadius = 5;
+    private float _explosionForce = 500000;
 
     private void OnTriggerEnter(Collider other)
     {
