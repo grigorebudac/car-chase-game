@@ -6,14 +6,6 @@ using UnityEngine;
 public class AlternateCarController : MonoBehaviour
 {
     private Rigidbody myBody;
-    private float _timer = 0;
-    private float _angle = 0;
-    public float _speed = 0.02f;
-    public float radius = 2;
-    private Vector3 rotationAngles;
-    private float rotationSpeed;
-    private Vector3 center;
-
 
     public GameObject frontLeftMesh;
     public GameObject frontRightMesh;
@@ -31,7 +23,10 @@ public class AlternateCarController : MonoBehaviour
     private Vector3 point;
     private bool isRotating;
 
-    float steeringAxis;
+    private float steeringAxis;
+
+    private const float MAX_STEERING_ANGLE = 40f;
+    private const float STEERING_SPEED = 0.5f;
 
     void Start()
     {
@@ -57,27 +52,27 @@ public class AlternateCarController : MonoBehaviour
                 var q = myBody.transform.rotation;
                 myBody.transform.RotateAround(point, new Vector3(0, 1, 0), rotation * Time.deltaTime);
                 myBody.transform.rotation = q;
-
             }
 
-            try
+            if (steeringAxis > 0.9f || steeringAxis < -0.9f)
             {
-                RLWParticleSystem.Play();
-                RRWParticleSystem.Play();
-
-            }
-            catch (Exception ex)
-            {
-                Debug.LogWarning(ex);
+                try
+                {
+                    RLWParticleSystem.Play();
+                    RRWParticleSystem.Play();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning(ex);
+                }
             }
 
             myBody.transform.Rotate(Vector3.up, 200f * Time.deltaTime * horizontal);
         }
         else
         {
-            isRotating = false;
-            RRWParticleSystem.Stop();
             RLWParticleSystem.Stop();
+            RRWParticleSystem.Stop();
         }
 
         if (horizontal < 0f)
@@ -89,32 +84,56 @@ public class AlternateCarController : MonoBehaviour
             TurnRight();
         }
 
+        if (!(horizontal < 0f) && !(horizontal > 0f) && steeringAxis != 0f)
+        {
+            ResetSteeringAngle();
+        }
+
         AnimateWheelMeshes();
     }
 
     public void TurnLeft()
     {
-        steeringAxis = steeringAxis - (Time.deltaTime * 10f * 0.5f);
+        steeringAxis = steeringAxis - (Time.deltaTime * 10f * STEERING_SPEED);
         if (steeringAxis < -1f)
         {
             steeringAxis = -1f;
         }
         var steeringAngle = steeringAxis * 35;
-        frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, 0.5f);
-        frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, 0.5f);
+        frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, STEERING_SPEED);
+        frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, STEERING_SPEED);
     }
 
-    //The following method turns the front car wheels to the right. The speed of this movement will depend on the steeringSpeed variable.
     public void TurnRight()
     {
-        steeringAxis = steeringAxis + (Time.deltaTime * 10f * 0.5f);
+        steeringAxis = steeringAxis + (Time.deltaTime * 10f * STEERING_SPEED);
         if (steeringAxis > 1f)
         {
             steeringAxis = 1f;
         }
-        var steeringAngle = steeringAxis * 35;
-        frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, 0.5f);
-        frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, 0.5f);
+        var steeringAngle = steeringAxis * MAX_STEERING_ANGLE;
+        frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, STEERING_SPEED);
+        frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, STEERING_SPEED);
+    }
+
+    public void ResetSteeringAngle()
+    {
+        if (steeringAxis < 0f)
+        {
+            steeringAxis = steeringAxis + (Time.deltaTime * 40f * STEERING_SPEED);
+        }
+        else if (steeringAxis > 0f)
+        {
+            steeringAxis = steeringAxis - (Time.deltaTime * 40f * STEERING_SPEED);
+        }
+        if (Mathf.Abs(frontLeftCollider.steerAngle) < 1f)
+        {
+            steeringAxis = 0f;
+        }
+        Debug.Log(steeringAxis + " to reset");
+        var steeringAngle = steeringAxis * MAX_STEERING_ANGLE;
+        frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, STEERING_SPEED);
+        frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, STEERING_SPEED);
     }
 
     void AnimateWheelMeshes()
