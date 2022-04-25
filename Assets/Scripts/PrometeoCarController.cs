@@ -105,15 +105,12 @@ public class PrometeoCarController : MonoBehaviour
     float initialCarEngineSoundPitch; // Used to store the initial pitch of the car engine sound.
 
     //CAR DATA
-
     [HideInInspector]
     public float carSpeed; // Used to store the speed of the car.
     [HideInInspector]
     public bool isDrifting; // Used to know whether the car is drifting or not.
     [HideInInspector]
     public bool isTractionLocked; // Used to know whether the traction of the car is locked or not.
-    [HideInInspector]
-    public float carHealth; // Used to store the speed of the car.
 
     //PRIVATE VARIABLES
 
@@ -827,10 +824,4 @@ public class PrometeoCarController : MonoBehaviour
             driftingAxis = 0f;
         }
     }
-
-    public void SetCarHealth(float value)
-    {
-        this.carHealth = value;
-    }
-
 }

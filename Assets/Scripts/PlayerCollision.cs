@@ -1,46 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerCollision : MonoBehaviour
 {
-    private HealthController healthController;
-
-    private PlayerCollision()
-    {
-        this.healthController = new HealthController();
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
+        PlayerController playerCar = gameObject.GetComponent<PlayerController>();
+
+        float damageTaken = 0;
 
         switch (collision.gameObject.tag)
         {
             case "Wall":
-                this.HitWall(car.carSpeed);
+                damageTaken = this.GetHitByWallDamage(car.carSpeed);
                 break;
             case "PoliceNPC":
             case "PolicePlayer":
                 PrometeoCarController policeCar = collision.gameObject.GetComponent<PrometeoCarController>();
-                this.HitByPoliceCar(policeCar.carSpeed);
+                damageTaken = this.GetHitByPoliceCarDamage(policeCar.carSpeed);
                 break;
             default:
                 break;
         }
 
-        car.SetCarHealth(healthController.GetHealth());
+        playerCar.TakeDamage(damageTaken);
     }
 
-    private void HitWall(float carSpeed)
+    private float GetHitByWallDamage(float carSpeed)
     {
         float damage = carSpeed / 10f;
-        healthController.TakeDamage(damage);
+        return Math.Abs(damage);
     }
 
-    private void HitByPoliceCar(float policeCarSpeed)
+    private float GetHitByPoliceCarDamage(float policeCarSpeed)
     {
         float damage = policeCarSpeed / 5f;
-        healthController.TakeDamage(damage);
+        return Math.Abs(damage);
     }
 }
