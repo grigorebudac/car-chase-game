@@ -275,12 +275,12 @@ public class PrometeoCarController : MonoBehaviour
         float vertical = Input.GetAxis(verticalAxis);
         float horizontal = Input.GetAxis(horizontalAxis);
 
-        // if (vertical > 0f)
-        // {
-        CancelInvoke("DecelerateCar");
-        deceleratingCar = false;
-        GoForward();
-        // }
+        if (vertical > 0f)
+        {
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            GoForward();
+        }
         if (vertical < 0f)
         {
             CancelInvoke("DecelerateCar");
@@ -298,23 +298,23 @@ public class PrometeoCarController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            // CancelInvoke("DecelerateCar");
-            // deceleratingCar = false;
-            // Handbrake();
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            Handbrake();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             RecoverTraction();
         }
-        // if ((!(vertical < 0f) && !(vertical > 0f)))
-        // {
-        //     ThrottleOff();
-        // }
-        // if ((!(vertical < 0f) && !(vertical > 0f)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar)
-        // {
-        //     InvokeRepeating("DecelerateCar", 0f, 0.1f);
-        //     deceleratingCar = true;
-        // }
+        if ((!(vertical < 0f) && !(vertical > 0f)))
+        {
+            ThrottleOff();
+        }
+        if ((!(vertical < 0f) && !(vertical > 0f)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar)
+        {
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
+        }
         if (!(horizontal < 0f) && !(horizontal > 0f) && steeringAxis != 0f)
         {
             ResetSteeringAngle();
@@ -484,7 +484,6 @@ public class PrometeoCarController : MonoBehaviour
     // This method apply positive torque to the wheels in order to go forward.
     public void GoForward()
     {
-        // Debug.Log("GO FORWARD");
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
         //3f, it means that the car is losing traction, then the car will start emitting particle systems.
         if (Mathf.Abs(localVelocityX) > 2.5f)
@@ -498,11 +497,11 @@ public class PrometeoCarController : MonoBehaviour
             DriftCarPS();
         }
         // The following part sets the throttle power to 1 smoothly.
-        // throttleAxis = throttleAxis + (Time.deltaTime * 3f);
-        // if (throttleAxis > 1f)
-        // {
-        throttleAxis = 1f;
-        // }
+        throttleAxis = throttleAxis + (Time.deltaTime * 3f);
+        if (throttleAxis > 1f)
+        {
+            throttleAxis = 1f;
+        }
         //If the car is going backwards, then apply brakes in order to avoid strange
         //behaviours. If the local velocity in the 'z' axis is less than -1f, then it
         //is safe to apply positive torque to go forward.
@@ -512,29 +511,28 @@ public class PrometeoCarController : MonoBehaviour
         }
         else
         {
-            // if (Mathf.RoundToInt(carSpeed) < maxSpeed)
-            // {
-            //Apply positive torque in all wheels to go forward if maxSpeed has not been reached.
-            // Debug.Log("---------------- GO FORWARD ----------------");
-            frontLeftCollider.brakeTorque = 0;
-            frontLeftCollider.motorTorque = 1000f;
-            frontRightCollider.brakeTorque = 0;
-            frontRightCollider.motorTorque = 1000f;
-            rearLeftCollider.brakeTorque = 0;
-            rearLeftCollider.motorTorque = 1000f;
-            rearRightCollider.brakeTorque = 0;
-            rearRightCollider.motorTorque = 1000f;
-            // }
-            // else
-            // {
-            //     // If the maxSpeed has been reached, then stop applying torque to the wheels.
-            //     // IMPORTANT: The maxSpeed variable should be considered as an approximation; the speed of the car
-            //     // could be a bit higher than expected.
-            //     frontLeftCollider.motorTorque = 0;
-            //     frontRightCollider.motorTorque = 0;
-            //     rearLeftCollider.motorTorque = 0;
-            //     rearRightCollider.motorTorque = 0;
-            // }
+            if (Mathf.RoundToInt(carSpeed) < maxSpeed)
+            {
+                //Apply positive torque in all wheels to go forward if maxSpeed has not been reached.
+                frontLeftCollider.brakeTorque = 0;
+                frontLeftCollider.motorTorque = (accelerationMultiplier * 50f) * throttleAxis;
+                frontRightCollider.brakeTorque = 0;
+                frontRightCollider.motorTorque = (accelerationMultiplier * 50f) * throttleAxis;
+                rearLeftCollider.brakeTorque = 0;
+                rearLeftCollider.motorTorque = (accelerationMultiplier * 50f) * throttleAxis;
+                rearRightCollider.brakeTorque = 0;
+                rearRightCollider.motorTorque = (accelerationMultiplier * 50f) * throttleAxis;
+            }
+            else
+            {
+                // If the maxSpeed has been reached, then stop applying torque to the wheels.
+                // IMPORTANT: The maxSpeed variable should be considered as an approximation; the speed of the car
+                // could be a bit higher than expected.
+                frontLeftCollider.motorTorque = 0;
+                frontRightCollider.motorTorque = 0;
+                rearLeftCollider.motorTorque = 0;
+                rearRightCollider.motorTorque = 0;
+            }
         }
     }
 

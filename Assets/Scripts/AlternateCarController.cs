@@ -126,11 +126,12 @@ public class AlternateCarController : MonoBehaviour
         {
             steeringAxis = steeringAxis - (Time.deltaTime * 40f * STEERING_SPEED);
         }
+
         if (Mathf.Abs(frontLeftCollider.steerAngle) < 1f)
         {
             steeringAxis = 0f;
         }
-        Debug.Log(steeringAxis + " to reset");
+
         var steeringAngle = steeringAxis * MAX_STEERING_ANGLE;
         frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, STEERING_SPEED);
         frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, STEERING_SPEED);
