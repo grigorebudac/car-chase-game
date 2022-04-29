@@ -8,7 +8,6 @@ public class Police : MonoBehaviour
     private NavMeshAgent pathFinder;
     Transform target;
 
-    // Start is called before the first frame update
     void Start()
     {
         pathFinder = GetComponent<NavMeshAgent>();
