@@ -7,6 +7,10 @@ TagManager:
   - Wall
   - Police
   - Health
+  - PoliceNPC
+  - PolicePlayer
+  - Collectable
+  - Perk
   layers:
   - Default
   - TransparentFX
