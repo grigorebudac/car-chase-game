@@ -4960,10 +4960,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosion: {fileID: 8128948846870891544, guid: 83e9e25e4403e4427a0e677f80af2f6e, type: 3}
-  _target: {fileID: 0}
   timer: 5
   homing: 0
-  _speed: 50
+  speed: 40
 --- !u!82 &5657378106327393039
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5067,6 +5066,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1055262705986275559}
     m_Modifications:
+    - target: {fileID: 2232237966906512910, guid: 3b27bf84401614b249b192eea95345e9, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5634278033328123929, guid: 3b27bf84401614b249b192eea95345e9, type: 3}
       propertyPath: m_RootOrder
       value: 1

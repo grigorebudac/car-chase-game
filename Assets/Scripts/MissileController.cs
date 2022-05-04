@@ -50,7 +50,7 @@ public class MissileController : MonoBehaviour
             float value = Vector3.Cross(pointToTarget, transform.up).y;
             
             rb.angularVelocity = 5f *  value * Vector3.up;
-            rb.velocity = transform.up * speed * 3f;
+            rb.velocity = transform.up * speed * 2f;
         }
         else
         {
