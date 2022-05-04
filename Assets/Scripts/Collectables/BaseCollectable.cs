@@ -11,7 +11,7 @@ public abstract class BaseCollectable : MonoBehaviour
             GameObject perk = PerkMapping.PerkMapToGameObject.TryGetValue(this.GetType(), out perk) ? perk : null;
             if (perk != null)
             {
-                playerController.perk = perk;
+                playerController.setPerk(perk);
             }
 
             Destroy(gameObject);

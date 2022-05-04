@@ -6,15 +6,14 @@ public class HealthCollectable : BaseCollectable
     {
         if (other.GetComponentInParent<PlayerController>() != null)
         {
-            PlayerController playerController = other.GetComponentInParent<PlayerController>();
-            usePerk(playerController);
+            HealthController healthController = other.GetComponentInParent<PlayerController>().carHealth;
+            usePerk(healthController);
             Destroy(gameObject);
         }
     }
 
-    public void usePerk(PlayerController playerController)
+    public void usePerk(HealthController healthController)
     {
-        // Debug.Log("Healing Player");
-        // playerController.Heal(10);
+        healthController.Heal(10);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerCollision : MonoBehaviour
+public class PolicePlayerCollision : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
@@ -19,9 +19,8 @@ public class PlayerCollision : MonoBehaviour
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
                 break;
-            case "PoliceNPC":
-            case "PolicePlayer":
-                damageToTake = 100f;
+            case "Player":
+                damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
                 break;
             default:

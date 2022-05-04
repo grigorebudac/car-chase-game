@@ -25,6 +25,8 @@ public class AlternateCarController : MonoBehaviour
 
     private float steeringAxis;
 
+    [SerializeField]
+    private float speed = 40f;
     private const float MAX_STEERING_ANGLE = 40f;
     private const float STEERING_SPEED = 0.5f;
 
@@ -38,7 +40,7 @@ public class AlternateCarController : MonoBehaviour
 
     void Update()
     {
-        myBody.transform.Translate(Vector3.forward * 50f * Time.deltaTime);
+        myBody.transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal != 0f)

@@ -6,24 +6,31 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Image healthBar;
-
-    [HideInInspector]
-    public HealthController carHealth = new HealthController();
-
+    public HealthController carHealth;
     public GameObject perk;
-
     public event Action OnPerkUse = delegate { };
+    public event Action OnPerkSet = delegate { };
 
-    public void TakeDamage(float value)
+    public void Awake()
     {
-        carHealth.TakeDamage(value);
+        carHealth = GetComponent<HealthController>();
+        carHealth.HealthChanged += OnHealthChanged;
+    }
+
+    private void OnHealthChanged()
+    {
         healthBar.fillAmount = carHealth.GetHealthPercentage();
     }
 
-    public void Heal(float value)
+    public float GetHealth()
     {
-        carHealth.Heal(value);
-        healthBar.fillAmount = carHealth.GetHealthPercentage();
+        return carHealth.GetHealth();
+    }
+
+    internal void setPerk(GameObject perk)
+    {
+        this.perk = perk;
+        OnPerkSet();
     }
 
     public void usePerk()
@@ -38,9 +45,21 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (gameObject.tag == "Player")
         {
-            usePerk();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                usePerk();
+            }
+        }
+        else if (gameObject.tag == "PolicePlayer")
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                usePerk();
+            }
         }
     }
+
+
 }

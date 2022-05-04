@@ -747,15 +747,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6465905938911536591}
   - component: {fileID: 1578725244427838749}
-  - component: {fileID: 1916923328346491648}
   - component: {fileID: 1916923328346491679}
-  - component: {fileID: 4544310834347374986}
-  - component: {fileID: 9065869045444616647}
-  - component: {fileID: 4452823804760389119}
-  - component: {fileID: 8665448597284549602}
-  - component: {fileID: 4341582924831102329}
+  - component: {fileID: -2151083906866999377}
+  - component: {fileID: -842862042606313986}
+  - component: {fileID: 3831679730771308590}
+  - component: {fileID: 2406963509627529141}
   m_Layer: 0
-  m_Name: Police
+  m_Name: SP Police
   m_TagString: PoliceNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,48 +793,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &1916923328346491648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916923328346491651}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0fefceefe666bb4682b272ec8c5bdd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 250
-  maxReverseSpeed: 45
-  accelerationMultiplier: 10
-  maxSteeringAngle: 35
-  steeringSpeed: 0.5
-  brakeForce: 450
-  decelerationMultiplier: 2
-  handbrakeDriftMultiplier: 5
-  bodyMassCenter: {x: 0, y: 0, z: 0}
-  frontLeftMesh: {fileID: 1916923328473202286}
-  frontLeftCollider: {fileID: 1916923328056846471}
-  frontRightMesh: {fileID: 1916923327350682396}
-  frontRightCollider: {fileID: 1916923328642938304}
-  rearLeftMesh: {fileID: 1916923328445352268}
-  rearLeftCollider: {fileID: 1916923328727033538}
-  rearRightMesh: {fileID: 1916923328826542209}
-  rearRightCollider: {fileID: 1916923327059368255}
-  useEffects: 1
-  RLWParticleSystem: {fileID: 2374354178958530489}
-  RRWParticleSystem: {fileID: 253747651500464851}
-  RLWTireSkid: {fileID: 7959481435951228382}
-  RRWTireSkid: {fileID: 8840178426350667256}
-  useUI: 0
-  carSpeedText: {fileID: 0}
-  useSounds: 0
-  carEngineSound: {fileID: 0}
-  tireScreechSound: {fileID: 0}
-  carSpeed: 0
-  isDrifting: 0
-  isTractionLocked: 0
 --- !u!114 &1916923328346491679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,7 +808,7 @@ MonoBehaviour:
   redLight: {fileID: 1916923328416051102}
   blueLight: {fileID: 1916923328811392105}
   speed: 300
---- !u!114 &4544310834347374986
+--- !u!114 &-2151083906866999377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -861,32 +817,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1916923328346491651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de7f09ff4ad14445b8b20c962fa05eb8, type: 3}
+  m_Script: {fileID: 11500000, guid: 937cb036ca69648519647c04764758ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &9065869045444616647
-NavMeshAgent:
+--- !u!114 &-842862042606313986
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916923328346491651}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 4
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &4452823804760389119
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80b6a55440ad4ee28de7518344b7064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 40
+  rotatingSpeed: 20
+--- !u!114 &3831679730771308590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   carHealth: {fileID: 0}
---- !u!114 &8665448597284549602
+--- !u!114 &2406963509627529141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -910,18 +858,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a09f6007e855e49a488c0735c663a9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4341582924831102329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916923328346491651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59665c2dda87451c864c7188130c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1916923328416051102

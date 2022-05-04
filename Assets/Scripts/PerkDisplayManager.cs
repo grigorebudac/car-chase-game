@@ -6,14 +6,28 @@ using UnityEngine.UI;
 
 public class PerkDisplayManager : MonoBehaviour
 {
-    public RawImage perkImage;
+    public Image perkImage;
+    public GameObject player;
+    private PlayerController playerController;
 
-    void Start()
+    void Awake()
     {
-        if (GetComponent<PlayerController>() != null)
+        if (player.GetComponent<PlayerController>() != null)
         {
-            GetComponent<PlayerController>().OnPerkUse += OnPerkUse;
+            playerController = player.GetComponent<PlayerController>();
+            {
+                playerController.OnPerkSet += OnPerkSet;
+                playerController.OnPerkUse += OnPerkUse;
+            }
         }
+    }
+
+    private void OnPerkSet()
+    {
+        perkImage.enabled = true;
+        string url = playerController.perk.GetComponent<BasePerk>().perkIcon;
+        Sprite perkIcon = Resources.Load<Sprite>(url);
+        perkImage.sprite = perkIcon;
     }
 
     private void OnPerkUse()

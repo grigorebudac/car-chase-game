@@ -8,7 +8,7 @@ public class AlternativePolice : MonoBehaviour
 
     private Rigidbody myBody;
     [SerializeField]
-    private float speed = 60f, rotatingSpeed = 20f;
+    private float speed = 40f, rotatingSpeed = 20f;
 
     void Start()
     {

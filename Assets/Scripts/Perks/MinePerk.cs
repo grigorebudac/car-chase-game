@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MinePerk : BasePerk
 {
+    public override string perkIcon { get { return "Mine"; } }
+
     [SerializeField] private GameObject _particles;
 
     private float _explosionRadius = 5;

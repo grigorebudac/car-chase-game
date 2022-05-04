@@ -16,6 +16,6 @@ public class MoneyCollectable : BaseCollectable
 
     public void usePerk(PlayerController playerController)
     {
-        // Debug.Log("Gaining Money");
+        Debug.Log("Gaining Money");
     }
 }
