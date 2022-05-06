@@ -8,25 +8,40 @@ public class PlayerCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
-        PlayerController playerCar = gameObject.GetComponent<PlayerController>();
+        HealthController ownHealthController = gameObject.GetComponent<PlayerController>().carHealth;
 
         float damageTaken = 0;
+        float damageToTake = 100f;
 
         switch (collision.gameObject.tag)
         {
             case "Wall":
-                damageTaken = this.GetHitByWallDamage(car.carSpeed);
+                damageToTake = car ? car.carSpeed : 200f;
+                damageTaken = this.GetHitByWallDamage(damageToTake);
                 break;
             case "PoliceNPC":
             case "PolicePlayer":
-                PrometeoCarController policeCar = collision.gameObject.GetComponent<PrometeoCarController>();
-                damageTaken = this.GetHitByPoliceCarDamage(policeCar.carSpeed);
+                damageToTake = 100f;
+                damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
                 break;
             default:
                 break;
         }
 
-        playerCar.TakeDamage(damageTaken);
+        ownHealthController.TakeDamage(damageTaken);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        // Debug.Log("trigger" + other.gameObject.name);
+        // if (other.gameObject.tag == "Wall")
+        // {
+        //     HealthController ownHealthController = gameObject.GetComponent<PlayerController>() != null ? gameObject.GetComponent<PlayerController>().carHealth : gameObject.GetComponent<NPCController>().carHealth;
+        //     // HealthController otherHealthController = collision.gameObject.GetComponent<HealthController>();
+        //     float damageTaken = 0;
+        //     damageTaken = this.GetHitByWallDamage(200f);
+        //     ownHealthController.TakeDamage(damageTaken);
+        // }
     }
 
     private float GetHitByWallDamage(float carSpeed)
