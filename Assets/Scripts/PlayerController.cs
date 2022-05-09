@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,11 @@ public class PlayerController : MonoBehaviour
     private Image healthBar;
     public HealthController carHealth;
     public GameObject perk;
+    public int score;
+    public Boolean isUsingShield = false;
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
+    public event Action OnScoreChange = delegate { };
 
     public void Awake()
     {
@@ -17,9 +21,20 @@ public class PlayerController : MonoBehaviour
         carHealth.HealthChanged += OnHealthChanged;
     }
 
+    public void Start()
+    {
+        StartCoroutine(IncreaseScoreEveryOtherSecond());
+    }
+
     private void OnHealthChanged()
     {
         healthBar.fillAmount = carHealth.GetHealthPercentage();
+    }
+
+    public void addToScore(int amount)
+    {
+        this.score += amount;
+        OnScoreChange();
     }
 
     public float GetHealth()
@@ -61,5 +76,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator IncreaseScoreEveryOtherSecond()
+    {
+        while (true)
+        {
+            score += 1;
+            OnScoreChange();
+            yield return new WaitForSeconds(2f);
+        }
+    }
 
 }

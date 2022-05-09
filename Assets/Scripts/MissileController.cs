@@ -42,7 +42,7 @@ public class MissileController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (homing)
+        if (homing && target != null)
         {
             Vector3 pointToTarget = transform.position - target.transform.position;
             pointToTarget.Normalize();
