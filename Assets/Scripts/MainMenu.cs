@@ -7,11 +7,26 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Scenes/SampleScene");
+        SceneManager.LoadScene("Scenes/PlayMenuScene");
     }
 
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void StartSingleplayer()
+    {
+        this.StartGame();
+    }
+
+    public void StartMultiplayer()
+    {
+        this.StartGame();
+    }
+
+    private void StartGame()
+    {
+        SceneManager.LoadScene("Scenes/SampleScene");
     }
 }
