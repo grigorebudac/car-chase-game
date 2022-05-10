@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoneyCollectable : BaseCollectable
 {
+    private int amount = 30;
+
     public override void OnTriggerEnter(Collider other)
     {
         if (other.GetComponentInParent<PlayerController>() != null)
@@ -16,6 +18,6 @@ public class MoneyCollectable : BaseCollectable
 
     public void usePerk(PlayerController playerController)
     {
-        Debug.Log("Gaining Money");
+        playerController.addToScore(amount);
     }
 }

@@ -10,6 +10,11 @@ public class PlayerCollision : MonoBehaviour
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
         HealthController ownHealthController = gameObject.GetComponent<PlayerController>().carHealth;
 
+        if (gameObject.GetComponent<PlayerController>().isUsingShield)
+        {
+            return;
+        }
+
         float damageTaken = 0;
         float damageToTake = 100f;
 
@@ -33,15 +38,7 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("trigger" + other.gameObject.name);
-        // if (other.gameObject.tag == "Wall")
-        // {
-        //     HealthController ownHealthController = gameObject.GetComponent<PlayerController>() != null ? gameObject.GetComponent<PlayerController>().carHealth : gameObject.GetComponent<NPCController>().carHealth;
-        //     // HealthController otherHealthController = collision.gameObject.GetComponent<HealthController>();
-        //     float damageTaken = 0;
-        //     damageTaken = this.GetHitByWallDamage(200f);
-        //     ownHealthController.TakeDamage(damageTaken);
-        // }
+
     }
 
     private float GetHitByWallDamage(float carSpeed)

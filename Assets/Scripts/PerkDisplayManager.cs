@@ -6,8 +6,12 @@ using UnityEngine.UI;
 
 public class PerkDisplayManager : MonoBehaviour
 {
-    public Image perkImage;
-    public GameObject player;
+    [SerializeField]
+    private Image perkImage;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private Text scoreText;
     private PlayerController playerController;
 
     void Awake()
@@ -18,8 +22,15 @@ public class PerkDisplayManager : MonoBehaviour
             {
                 playerController.OnPerkSet += OnPerkSet;
                 playerController.OnPerkUse += OnPerkUse;
+                playerController.OnScoreChange += OnScoreChange;
             }
         }
+    }
+
+    private void OnScoreChange()
+    {
+        if (scoreText != null)
+            scoreText.text = "Score: " + playerController.score.ToString();
     }
 
     private void OnPerkSet()
