@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalAxis: Horizontal
   verticalAxis: Vertical
-  usePerkButton: UsePerk
+  usePerkButton: UsePerk1
   breakButton: Break1
 --- !u!114 &1487219280
 MonoBehaviour:
