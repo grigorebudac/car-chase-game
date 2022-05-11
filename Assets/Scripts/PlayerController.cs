@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public void Awake()
     {
         carHealth = GetComponent<HealthController>();
-        carHealth.HealthChanged += OnHealthChanged;
+        if(carHealth)
+            carHealth.HealthChanged += OnHealthChanged;
     }
 
     public void Start()
