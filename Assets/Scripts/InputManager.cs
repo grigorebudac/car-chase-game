@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private string verticalAxis = "Vertical";
     [SerializeField]
-    private string usePerkButton = "UsePerk";
+    private string usePerkButton = "UsePerk1";
     [SerializeField]
     private string breakButton = "Break1";
 
