@@ -8,25 +8,37 @@ public class PlayerCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
-        PlayerController playerCar = gameObject.GetComponent<PlayerController>();
+        HealthController ownHealthController = gameObject.GetComponent<PlayerController>().carHealth;
+
+        if (gameObject.GetComponent<PlayerController>().isUsingShield)
+        {
+            return;
+        }
 
         float damageTaken = 0;
+        float damageToTake = 100f;
 
         switch (collision.gameObject.tag)
         {
             case "Wall":
-                damageTaken = this.GetHitByWallDamage(car.carSpeed);
+                damageToTake = car ? car.carSpeed : 200f;
+                damageTaken = this.GetHitByWallDamage(damageToTake);
                 break;
             case "PoliceNPC":
             case "PolicePlayer":
-                PrometeoCarController policeCar = collision.gameObject.GetComponent<PrometeoCarController>();
-                damageTaken = this.GetHitByPoliceCarDamage(policeCar.carSpeed);
+                damageToTake = 100f;
+                damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
                 break;
             default:
                 break;
         }
 
-        playerCar.TakeDamage(damageTaken);
+        ownHealthController.TakeDamage(damageTaken);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
     }
 
     private float GetHitByWallDamage(float carSpeed)
