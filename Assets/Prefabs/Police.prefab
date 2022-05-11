@@ -835,7 +835,6 @@ MonoBehaviour:
   carSpeed: 0
   isDrifting: 0
   isTractionLocked: 0
-  carHealth: 0
 --- !u!114 &1916923328346491679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,8 +862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7f09ff4ad14445b8b20c962fa05eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  rotatingSpeed: 8
 --- !u!114 &-2151083906866999377
 MonoBehaviour:
   m_ObjectHideFlags: 0
