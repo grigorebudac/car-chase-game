@@ -543,6 +543,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937cb036ca69648519647c04764758ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &678699095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678699093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b433fdb01644d9ca185c976025a6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalAxis: HorizontalV2
+  verticalAxis: VerticalV2
+  usePerkButton: UsePerk2
+  breakButton: Break2
 --- !u!114 &678699097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1289,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e72b8c839bad42638591a42f7c37e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1574185693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574185690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b433fdb01644d9ca185c976025a6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  usePerkButton: UsePerk1
+  breakButton: Break1
 --- !u!4 &1574185696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6465905938911536591, guid: 9aaff254466b84a34b3df95f1d803827, type: 3}
