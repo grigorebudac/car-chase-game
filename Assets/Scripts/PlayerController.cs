@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
     public GameObject perk;
     public int score;
     public Boolean isUsingShield = false;
-    public InputManager inputManager;
+    private InputManager inputManager;
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
     public event Action OnScoreChange = delegate { };
+    private GameObject variableForPrefab;
 
     public void Awake()
     {
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
         inputManager = GetComponentInParent<InputManager>();
         if (inputManager)
             inputManager.onUsePerk += usePerk;
+        
+        variableForPrefab = (GameObject)Resources.Load("prefabs/Explosion", typeof(GameObject));
     }
 
     public void Start()

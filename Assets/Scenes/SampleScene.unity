@@ -576,7 +576,6 @@ MonoBehaviour:
   perk: {fileID: 0}
   score: 0
   isUsingShield: 0
-  inputManager: {fileID: 0}
 --- !u!114 &678699098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,7 +1277,6 @@ MonoBehaviour:
   perk: {fileID: 0}
   score: 0
   isUsingShield: 0
-  inputManager: {fileID: 0}
 --- !u!114 &1574185692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,7 +1464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1971428979
 MonoBehaviour:
   m_ObjectHideFlags: 0
