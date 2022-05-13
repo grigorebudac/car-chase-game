@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject perk;
     public int score;
     public Boolean isUsingShield = false;
-    public InputManager inputManager;
+    private InputManager inputManager;
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
     public event Action OnScoreChange = delegate { };
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     private void OnHealthChanged()
     {
         float health = carHealth.GetHealthPercentage();
-        
+
         healthBar.fillAmount = health;
     }
 
