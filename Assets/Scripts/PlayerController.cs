@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Image healthBar;
+
     public HealthController carHealth;
     public GameObject perk;
     public int score;
@@ -15,18 +16,17 @@ public class PlayerController : MonoBehaviour
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
     public event Action OnScoreChange = delegate { };
-    private GameObject variableForPrefab;
+    private GameObject explosion;
 
     public void Awake()
     {
         carHealth = GetComponent<HealthController>();
-        if (carHealth)
-            carHealth.HealthChanged += OnHealthChanged;
-        variableForPrefab = (GameObject)Resources.Load("prefabs/Explosion", typeof(GameObject));
-
+        carHealth.HealthChanged += OnHealthChanged;
         inputManager = GetComponentInParent<InputManager>();
         if (inputManager)
             inputManager.onUsePerk += usePerk;
+        
+        explosion = (GameObject)Resources.Load("Explosion", typeof(GameObject));
     }
 
     public void Start()
@@ -36,9 +36,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnHealthChanged()
     {
-        float health = carHealth.GetHealthPercentage();
+        healthBar.fillAmount = carHealth.GetHealthPercentage();
 
-        healthBar.fillAmount = health;
+        if (carHealth.GetHealth() <= 0)
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     public void addToScore(int amount)

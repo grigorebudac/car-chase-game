@@ -5,6 +5,9 @@ using System;
 
 public class PolicePlayerCollision : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource hit;
+    
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
@@ -15,13 +18,23 @@ public class PolicePlayerCollision : MonoBehaviour
 
         switch (collision.gameObject.tag)
         {
-            case "Wall":
+            case "Building":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
+                
+                if (hit != null)
+                {
+                    hit.Play();
+                }
                 break;
             case "Player":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
+                
+                if (hit != null)
+                {
+                    hit.Play();
+                }
                 break;
             default:
                 break;
