@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject perk;
     public int score;
     public Boolean isUsingShield = false;
+    public InputManager inputManager;
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
     public event Action OnScoreChange = delegate { };
@@ -18,8 +19,12 @@ public class PlayerController : MonoBehaviour
     public void Awake()
     {
         carHealth = GetComponent<HealthController>();
-        if(carHealth)
+        if (carHealth)
             carHealth.HealthChanged += OnHealthChanged;
+
+        inputManager = GetComponentInParent<InputManager>();
+        if (inputManager)
+            inputManager.onUsePerk += usePerk;
     }
 
     public void Start()
@@ -56,24 +61,6 @@ public class PlayerController : MonoBehaviour
             perk.GetComponent<BasePerk>().usePerk(perk, gameObject);
             OnPerkUse();
             perk = null;
-        }
-    }
-
-    public void Update()
-    {
-        if (gameObject.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                usePerk();
-            }
-        }
-        else if (gameObject.tag == "PolicePlayer")
-        {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                usePerk();
-            }
         }
     }
 
