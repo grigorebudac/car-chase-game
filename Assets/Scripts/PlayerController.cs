@@ -11,15 +11,19 @@ public class PlayerController : MonoBehaviour
     public GameObject perk;
     public int score;
     public Boolean isUsingShield = false;
-    public InputManager inputManager;
+    private InputManager inputManager;
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
     public event Action OnScoreChange = delegate { };
+    private GameObject variableForPrefab;
 
     public void Awake()
     {
         carHealth = GetComponent<HealthController>();
-        carHealth.HealthChanged += OnHealthChanged;
+        if (carHealth)
+            carHealth.HealthChanged += OnHealthChanged;
+        variableForPrefab = (GameObject)Resources.Load("prefabs/Explosion", typeof(GameObject));
+
         inputManager = GetComponentInParent<InputManager>();
         if (inputManager)
             inputManager.onUsePerk += usePerk;
@@ -32,18 +36,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnHealthChanged()
     {
-        healthBar.fillAmount = carHealth.GetHealthPercentage();
+        float health = carHealth.GetHealthPercentage();
+
+        healthBar.fillAmount = health;
     }
 
     public void addToScore(int amount)
     {
         this.score += amount;
         OnScoreChange();
-    }
-
-    public float GetHealth()
-    {
-        return carHealth.GetHealth();
     }
 
     internal void setPerk(GameObject perk)
