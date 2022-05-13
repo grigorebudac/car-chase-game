@@ -4,7 +4,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     private float health;
-    private const float MAX_HEALTH = 100f;
+    private const float MAX_HEALTH = 1f;
     public event Action HealthChanged = delegate { };
 
     public void Awake()

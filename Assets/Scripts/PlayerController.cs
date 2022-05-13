@@ -33,17 +33,17 @@ public class PlayerController : MonoBehaviour
     private void OnHealthChanged()
     {
         healthBar.fillAmount = carHealth.GetHealthPercentage();
+
+        if (carHealth.GetHealth() <= 0)
+        {
+            Debug.Log("Mort nahui: " + carHealth.GetHealth());
+        }
     }
 
     public void addToScore(int amount)
     {
         this.score += amount;
         OnScoreChange();
-    }
-
-    public float GetHealth()
-    {
-        return carHealth.GetHealth();
     }
 
     internal void setPerk(GameObject perk)
