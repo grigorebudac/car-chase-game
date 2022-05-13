@@ -34,7 +34,7 @@ public class CollectablesSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (ShouldSpawn())
+        if (ShouldSpawn() && playerTarget)
         {
             Spawn();
         }
