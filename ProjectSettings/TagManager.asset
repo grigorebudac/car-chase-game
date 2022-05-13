@@ -11,6 +11,7 @@ TagManager:
   - PolicePlayer
   - Collectable
   - Perk
+  - Building
   layers:
   - Default
   - TransparentFX
