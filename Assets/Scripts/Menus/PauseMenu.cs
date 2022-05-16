@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    private float tempVolume;
+
     private void Awake()
     {
         pauseMenuUI.SetActive(false);
@@ -29,17 +31,20 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
+        AudioListener.volume = tempVolume;
+
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
-        AudioListener.volume = 1f;
     }
 
     public void Pause() {
+        tempVolume = AudioListener.volume;
+        AudioListener.volume = 0f;
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; // time moving in slow motion
         isGamePaused = true;
-        AudioListener.volume = 0f;
     }
 
     public void Restart()
@@ -51,7 +56,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ToggleAudio()
     {
+        float volume = tempVolume == 0f ? 1f : 0f;
+        AudioListener.volume = volume;
+        tempVolume = volume;
 
+        this.Resume();
     }
 
     public void ToggleEffects()
