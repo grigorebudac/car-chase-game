@@ -12,7 +12,7 @@ public class MinePerk : BasePerk
     public override void usePerk(GameObject perk, GameObject gameObject)
     {
         Transform carTransform = gameObject.transform;
-        Instantiate(this, carTransform.position - new Vector3(10, 0, 10), carTransform.rotation);
+        Instantiate(this, carTransform.position - (carTransform.forward * 4f), carTransform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +32,8 @@ public class MinePerk : BasePerk
         }
 
         Instantiate(_particles, transform.position, Quaternion.identity);
+
+        other.GetComponentInParent<HealthController>().TakeDamage(50f);
 
         Destroy(gameObject);
     }

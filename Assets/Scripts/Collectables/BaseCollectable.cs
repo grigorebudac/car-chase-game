@@ -3,6 +3,11 @@ using System;
 using UnityEngine;
 public abstract class BaseCollectable : MonoBehaviour
 {
+    void Update()
+    {
+        Destroy(gameObject, 10f);
+    }
+
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.GetComponentInParent<PlayerController>() != null)

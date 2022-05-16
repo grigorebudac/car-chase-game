@@ -63,14 +63,15 @@ public class ECCar : MonoBehaviour
     public HealthController healthController;
     private Transform groundObject;
     public LayerMask groundLayer;
-
+    public ParticleSystem RLWParticleSystem;
+    public ParticleSystem RRWParticleSystem;
+    public TrailRenderer RLWTireSkid;
+    public TrailRenderer RRWTireSkid;
     private void Start()
     {
         thisTransform = this.transform;
         inputManager = GetComponent<InputManager>();
 
-        // // Hold some variables for easier access
-        // if (gameController == null) gameController = GameObject.FindObjectOfType<ECCGameController>();
         targetPlayerTransform = GameObject.FindObjectOfType<PlayerController>().transform;
         healthController = GetComponent<HealthController>();
 
@@ -237,6 +238,11 @@ public class ECCar : MonoBehaviour
             // Play the skidding animation. In this animation you can trigger all kinds of effects such as dust, skid marks, etc
             // GetComponent<Animator>().Play("Skid");
 
+            RLWParticleSystem.Play();
+            RRWParticleSystem.Play();
+            RLWTireSkid.emitting = true;
+            RRWTireSkid.emitting = true;
+
             // Go through all the wheels making them spin, and make the front wheels turn sideways based on rotation
             for (index = 0; index < wheels.Length; index++)
             {
@@ -255,8 +261,10 @@ public class ECCar : MonoBehaviour
             // Return the chassis to its 0 angle
             if (chassis) chassis.localEulerAngles = Vector3.forward * Mathf.LerpAngle(chassis.localEulerAngles.z, 0, Time.deltaTime * 5);//  Mathf.LerpAngle(thisTransform.Find("Base").localEulerAngles.y, rotateDirection * driftAngle, Time.deltaTime);
 
-            // Play the move animation. In this animation we stop any previously triggered effects such as dust, skid marks, etc
-            // GetComponent<Animator>().Play("Move");
+            RLWParticleSystem.Stop();
+            RRWParticleSystem.Stop();
+            RLWTireSkid.emitting = false;
+            RRWTireSkid.emitting = false;
 
             // Go through all the wheels making them spin faster than when turning, and return the front wheels to their 0 angle
             for (index = 0; index < wheels.Length; index++)

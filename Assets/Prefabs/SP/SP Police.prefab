@@ -819,6 +819,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  RLWParticleSystem: {fileID: 2374354178958530489}
+  RRWParticleSystem: {fileID: 253747651500464851}
+  RLWTireSkid: {fileID: 7959481435951228382}
+  RRWTireSkid: {fileID: 8840178426350667256}
 --- !u!114 &2564551044122863092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,7 +2398,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.9956332
+          value: 0.56676584
           inSlope: 0.19937925
           outSlope: 0.19937925
           tangentMode: 0
@@ -2402,7 +2406,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.44812012
           value: 0
           inSlope: -0.08643276
           outSlope: -0.08643276
@@ -2417,8 +2421,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0.53881526
+          time: 0.023586273
+          value: 0.3511932
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2426,7 +2430,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.50943404
           value: 0
           inSlope: -0.85714215
           outSlope: -0.85714215
@@ -7376,8 +7380,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0.9956332
+          time: 0.014152527
+          value: 0.643056
           inSlope: 0.19937925
           outSlope: 0.19937925
           tangentMode: 0
@@ -7385,7 +7389,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.41036987
           value: 0
           inSlope: -0.08643276
           outSlope: -0.08643276
@@ -7409,7 +7413,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
+          time: 0.39622813
           value: 0
           inSlope: -0.85714215
           outSlope: -0.85714215

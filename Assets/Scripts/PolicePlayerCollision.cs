@@ -7,7 +7,7 @@ public class PolicePlayerCollision : MonoBehaviour
 {
     [SerializeField]
     private AudioSource hit;
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
@@ -21,7 +21,7 @@ public class PolicePlayerCollision : MonoBehaviour
             case "Building":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
-                
+
                 if (hit != null)
                 {
                     hit.Play();
@@ -30,7 +30,7 @@ public class PolicePlayerCollision : MonoBehaviour
             case "Player":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
-                
+
                 if (hit != null)
                 {
                     hit.Play();
@@ -45,15 +45,7 @@ public class PolicePlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("trigger" + other.gameObject.name);
-        // if (other.gameObject.tag == "Wall")
-        // {
-        //     HealthController ownHealthController = gameObject.GetComponent<PlayerController>() != null ? gameObject.GetComponent<PlayerController>().carHealth : gameObject.GetComponent<NPCController>().carHealth;
-        //     // HealthController otherHealthController = collision.gameObject.GetComponent<HealthController>();
-        //     float damageTaken = 0;
-        //     damageTaken = this.GetHitByWallDamage(200f);
-        //     ownHealthController.TakeDamage(damageTaken);
-        // }
+
     }
 
     private float GetHitByWallDamage(float carSpeed)
