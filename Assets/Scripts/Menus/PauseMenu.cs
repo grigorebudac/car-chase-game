@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool isGamePaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject deadMenuUI;
     public TextMeshProUGUI audioText;
 
     private float tempVolume;
@@ -16,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         pauseMenuUI.SetActive(false);
+        deadMenuUI.SetActive(false);
     }
 
     void Update()
@@ -70,5 +72,10 @@ public class PauseMenu : MonoBehaviour
     private void SetAudioBtnText()
     {
         audioText.text = AudioListener.volume == 0f ? "Enable Audio" : "Disable Audio";
+    }
+
+    public void ShowDeadMenu()
+    {
+        deadMenuUI.SetActive(true);
     }
 }
