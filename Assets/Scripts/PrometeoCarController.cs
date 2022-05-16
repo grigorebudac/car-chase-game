@@ -137,17 +137,13 @@ public class PrometeoCarController : MonoBehaviour
     float RLWextremumSlip;
     WheelFrictionCurve RRwheelFriction;
     float RRWextremumSlip;
-    string verticalAxis; // The name of the vertical axis.
-    string horizontalAxis; // The name of the horizontal axis.
 
+    InputManager inputManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        string gameObjectTAG = gameObject.tag;
-
-        verticalAxis = gameObject.tag == "PolicePlayer" ? "PoliceVertical" : "Vertical";
-        horizontalAxis = gameObject.tag == "PolicePlayer" ? "PoliceHorizontal" : "Horizontal";
+        inputManager = GetComponent<InputManager>();
 
         //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
         //gameObject. Also, we define the center of mass of the car with the Vector3 given
@@ -268,12 +264,8 @@ public class PrometeoCarController : MonoBehaviour
 		A (turn left), D (turn right) or Space bar (handbrake).
 		*/
 
-        string gameObjectTAG = gameObject.tag;
-        if (gameObjectTAG == "PoliceNPC")
-            return;
-
-        float vertical = Input.GetAxis(verticalAxis);
-        float horizontal = Input.GetAxis(horizontalAxis);
+        float vertical = inputManager.Vertical;
+        float horizontal = inputManager.Horizontal;
 
         if (vertical > 0f)
         {
@@ -296,13 +288,13 @@ public class PrometeoCarController : MonoBehaviour
         {
             TurnRight();
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (inputManager.Break)
         {
             CancelInvoke("DecelerateCar");
             deceleratingCar = false;
             Handbrake();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (inputManager.BreakUp)
         {
             RecoverTraction();
         }
@@ -310,7 +302,7 @@ public class PrometeoCarController : MonoBehaviour
         {
             ThrottleOff();
         }
-        if ((!(vertical < 0f) && !(vertical > 0f)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar)
+        if ((!(vertical < 0f) && !(vertical > 0f)) && !inputManager.Break && !deceleratingCar)
         {
             InvokeRepeating("DecelerateCar", 0f, 0.1f);
             deceleratingCar = true;
@@ -714,7 +706,6 @@ public class PrometeoCarController : MonoBehaviour
     // depending on the value of the bool variables 'isDrifting' and 'isTractionLocked'.
     public void DriftCarPS()
     {
-
         if (useEffects)
         {
             try

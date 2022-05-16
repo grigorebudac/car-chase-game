@@ -7,18 +7,26 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Image healthBar;
+
     public HealthController carHealth;
     public GameObject perk;
     public int score;
     public Boolean isUsingShield = false;
+    private InputManager inputManager;
     public event Action OnPerkUse = delegate { };
     public event Action OnPerkSet = delegate { };
     public event Action OnScoreChange = delegate { };
+    private GameObject explosion;
 
     public void Awake()
     {
         carHealth = GetComponent<HealthController>();
         carHealth.HealthChanged += OnHealthChanged;
+        inputManager = GetComponentInParent<InputManager>();
+        if (inputManager)
+            inputManager.onUsePerk += usePerk;
+        
+        explosion = (GameObject)Resources.Load("Explosion", typeof(GameObject));
     }
 
     public void Start()
@@ -29,17 +37,18 @@ public class PlayerController : MonoBehaviour
     private void OnHealthChanged()
     {
         healthBar.fillAmount = carHealth.GetHealthPercentage();
+
+        if (carHealth.GetHealth() <= 0)
+        {
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     public void addToScore(int amount)
     {
         this.score += amount;
         OnScoreChange();
-    }
-
-    public float GetHealth()
-    {
-        return carHealth.GetHealth();
     }
 
     internal void setPerk(GameObject perk)
@@ -55,24 +64,6 @@ public class PlayerController : MonoBehaviour
             perk.GetComponent<BasePerk>().usePerk(perk, gameObject);
             OnPerkUse();
             perk = null;
-        }
-    }
-
-    public void Update()
-    {
-        if (gameObject.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                usePerk();
-            }
-        }
-        else if (gameObject.tag == "PolicePlayer")
-        {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                usePerk();
-            }
         }
     }
 

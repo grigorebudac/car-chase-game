@@ -34,7 +34,7 @@ public class CollectablesSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (ShouldSpawn())
+        if (ShouldSpawn() && playerTarget)
         {
             Spawn();
         }
@@ -42,11 +42,17 @@ public class CollectablesSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        // Pick a random position within the spawn radius.
-        float x = Random.Range(playerTarget.position.x - 45, playerTarget.position.x + 45);
-        float z = Random.Range(playerTarget.position.z - 30, playerTarget.position.z + 50);
-        int spawnDelay = Random.Range(minRange, maxRange);
 
+        float x = Random.Range(playerTarget.position.x - 45, playerTarget.position.x + 45);
+        float z = Random.Range(playerTarget.position.z - 45, playerTarget.position.z + 45);
+
+        if (Physics.CheckSphere(new Vector3(x, 0, z), 0))
+        {
+            return;
+        }
+
+        Vector3 spawnPosition = new Vector3(x, 0.5f, z);
+        int spawnDelay = Random.Range(minRange, maxRange);
 
         // Generate a random position in the list.
         float pick = Random.value * _totalSpawnWeight;
@@ -62,7 +68,6 @@ public class CollectablesSpawner : MonoBehaviour
         }
 
         // Spawn the chosen item.
-        Vector3 spawnPosition = new Vector3(x, 0.5f, z);
         GameObject collectable = Instantiate(collectables[chosenIndex].prefab, spawnPosition, Quaternion.identity);
 
         collectable.AddComponent<PickUpAnimation>();

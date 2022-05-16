@@ -4,7 +4,9 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     private float health;
-    private const float MAX_HEALTH = 100f;
+    
+    [SerializeField]
+    private float MAX_HEALTH = 100f;
     public event Action HealthChanged = delegate { };
 
     public void Awake()
