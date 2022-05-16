@@ -54,7 +54,7 @@ public class MissileController : MonoBehaviour
         }
         else
         {
-            rb.AddForce(transform.up * speed, ForceMode.Impulse);
+            rb.AddForce(transform.up * speed * 2f, ForceMode.Impulse);
         }
 
     }

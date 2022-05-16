@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2.0467758
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2.0443227
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2.0443227
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92,6 +92,10 @@ PrefabInstance:
       value: 0.00028706
       objectReference: {fileID: 0}
     - target: {fileID: 8292466700384351526, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292466700384351526, guid: 1084aa63404e74db08a611bc367b3021, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.94893706
       objectReference: {fileID: 0}
@@ -121,8 +125,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2291842, y: 1.2000002, z: 1.1801598}
-  m_Center: {x: -0.006811301, y: 0.8000001, z: 0.4500167}
+  m_Size: {x: 1.2291842, y: 1.7431359, z: 1.1801598}
+  m_Center: {x: -0.006811301, y: 0.5284326, z: 0.4500167}
 --- !u!114 &2610999304635838694
 MonoBehaviour:
   m_ObjectHideFlags: 0

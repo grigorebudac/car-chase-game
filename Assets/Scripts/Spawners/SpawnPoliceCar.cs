@@ -30,6 +30,15 @@ public class SpawnPoliceCar : MonoBehaviour
         float z = playerTarget.position.z - Random.Range(10, 30);
 
         Vector3 spawnPosition = new Vector3(x, y, z);
+
+        if (Physics.CheckSphere(new Vector3(x, 0, z), 0))
+        {
+            x = playerTarget.position.x - Random.Range(10, 30);
+            y = 0.5f;
+            z = playerTarget.position.z - Random.Range(10, 30);
+            spawnPosition = new Vector3(x, y, z);
+        }
+
         Instantiate(prefab, spawnPosition, Quaternion.identity);
 
         nextSpawnTime = Time.time + spawnDelay;

@@ -52,6 +52,12 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        PlayerController playerController = gameObject.GetComponent<PlayerController>();
+        if (playerController && playerController.isUsingShield)
+        {
+            return;
+        }
+
         if (other.gameObject.tag == "Props") return;
         if (other.gameObject.tag == "Building")
         {
@@ -64,18 +70,7 @@ public class PlayerCollision : MonoBehaviour
             HealthController healthController = gameObject.GetComponent<HealthController>();
             healthController.TakeDamage(25f);
 
-            StartCoroutine(EFlash(gameObject));
         }
-    }
-
-    IEnumerator EFlash(GameObject gameObject)
-    {
-        MeshRenderer meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
-        Color orgColor = meshRenderer.material.color;
-
-        meshRenderer.material.color = Color.red;
-        yield return new WaitForSeconds(.15f);
-        meshRenderer.material.color = orgColor;
     }
 
     private float GetHitByWallDamage(float carSpeed)
