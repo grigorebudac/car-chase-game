@@ -14,19 +14,4 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-
-    public void StartSingleplayer()
-    {
-        this.StartGame();
-    }
-
-    public void StartMultiplayer()
-    {
-        this.StartGame();
-    }
-
-    private void StartGame()
-    {
-        SceneManager.LoadScene("Scenes/SampleScene");
-    }
 }
