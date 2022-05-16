@@ -6,8 +6,8 @@ using System;
 public class PolicePlayerCollision : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource hit;
-    
+    private AudioSource hitSound;
+
     private void OnCollisionEnter(Collision collision)
     {
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
@@ -22,18 +22,18 @@ public class PolicePlayerCollision : MonoBehaviour
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
                 
-                if (hit != null)
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             case "Player":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
                 
-                if (hit != null)
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             default:
@@ -42,20 +42,7 @@ public class PolicePlayerCollision : MonoBehaviour
 
         ownHealthController.TakeDamage(damageTaken);
     }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        // Debug.Log("trigger" + other.gameObject.name);
-        // if (other.gameObject.tag == "Wall")
-        // {
-        //     HealthController ownHealthController = gameObject.GetComponent<PlayerController>() != null ? gameObject.GetComponent<PlayerController>().carHealth : gameObject.GetComponent<NPCController>().carHealth;
-        //     // HealthController otherHealthController = collision.gameObject.GetComponent<HealthController>();
-        //     float damageTaken = 0;
-        //     damageTaken = this.GetHitByWallDamage(200f);
-        //     ownHealthController.TakeDamage(damageTaken);
-        // }
-    }
-
+    
     private float GetHitByWallDamage(float carSpeed)
     {
         float damage = carSpeed / 10f;

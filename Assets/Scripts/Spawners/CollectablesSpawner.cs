@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CollectablesSpawner : MonoBehaviour
 {
-    public int minRange = 3;
-    public int maxRange = 5;
-    Transform playerTarget;
+    [SerializeField]
+    private int minRange = 3;
+    [SerializeField]
+    private int maxRange = 5;
+    [SerializeField]
     private float nextSpawnTime;
+    Transform playerTarget;
 
     public PrefabEntry[] collectables;
     float _totalSpawnWeight;

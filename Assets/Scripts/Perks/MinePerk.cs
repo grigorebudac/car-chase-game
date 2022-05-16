@@ -31,8 +31,9 @@ public class MinePerk : BasePerk
             rb.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1);
         }
 
-        Instantiate(_particles, transform.position, Quaternion.identity);
-
+        GameObject explosion = Instantiate(_particles, transform.position, Quaternion.identity);
+        Destroy(explosion, 2f);
+        
         Destroy(gameObject);
     }
 }

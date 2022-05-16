@@ -6,6 +6,6 @@ public class NitroPerk : BasePerk
 
     public override void usePerk(GameObject perk, GameObject gameObject)
     {
-        Debug.Log("NITROOO");
+        gameObject.GetComponent<NitroController>().UseNitro(gameObject.GetComponent<Rigidbody>());
     }
 }

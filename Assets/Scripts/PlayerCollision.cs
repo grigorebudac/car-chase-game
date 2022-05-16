@@ -6,10 +6,11 @@ using System;
 public class PlayerCollision : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource hit;
-    
+    private AudioSource hitSound;
+
     private void OnCollisionEnter(Collision collision)
     {
+        
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
         HealthController ownHealthController = gameObject.GetComponent<PlayerController>().carHealth;
 
@@ -17,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
         {
             return;
         }
-
+        
         float damageTaken = 0;
         float damageToTake = 100f;
 
@@ -27,19 +28,20 @@ public class PlayerCollision : MonoBehaviour
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
                 
-                if (hit != null)
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             case "PoliceNPC":
+                break;
             case "PolicePlayer":
                 damageToTake = 100f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
                 
-                if (hit != null)
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             default:
@@ -47,11 +49,6 @@ public class PlayerCollision : MonoBehaviour
         }
 
         ownHealthController.TakeDamage(damageTaken);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-
     }
 
     private float GetHitByWallDamage(float carSpeed)
