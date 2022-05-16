@@ -39,7 +39,11 @@ public class PlayerController : MonoBehaviour
 
         if (carHealth.GetHealth() <= 0)
         {
+            PauseMenu pauseMenu = FindObjectOfType<PauseMenu>();
+            pauseMenu.ShowDeadMenu();
+
             Instantiate(explosion, transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }
