@@ -9,10 +9,12 @@ public class HealthController : MonoBehaviour
     [SerializeField]
     private float MAX_HEALTH = 100f;
     public event Action HealthChanged = delegate { };
+    private PrometeoCarController prometeoCarController;
 
     public void Awake()
     {
         this.health = MAX_HEALTH;
+        prometeoCarController = GetComponent<PrometeoCarController>();
     }
 
     public float GetHealth()
@@ -29,7 +31,8 @@ public class HealthController : MonoBehaviour
     {
         this.health = Math.Max(this.health - value, 0);
         HealthChanged();
-        StartCoroutine(EFlash());
+        if (prometeoCarController == null)
+            StartCoroutine(EFlash());
     }
 
     public void Heal(float value)

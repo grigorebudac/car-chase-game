@@ -73,6 +73,7 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
+
     private float GetHitByWallDamage(float carSpeed)
     {
         float damage = carSpeed / 10f;

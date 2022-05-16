@@ -14,14 +14,6 @@ public class PoliceNPCCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("trigger" + other.gameObject.name);
-        // if (other.gameObject.tag == "Wall")
-        // {
-        //     HealthController ownHealthController = gameObject.GetComponent<PlayerController>() != null ? gameObject.GetComponent<PlayerController>().carHealth : gameObject.GetComponent<NPCController>().carHealth;
-        //     // HealthController otherHealthController = collision.gameObject.GetComponent<HealthController>();
-        //     float damageTaken = 0;
-        //     damageTaken = this.GetHitByWallDamage(200f);
-        //     ownHealthController.TakeDamage(damageTaken);
-        // }
+
     }
 }

@@ -27,7 +27,7 @@ public class MissileController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.transform.Rotate(90f, 0f, 0f);
         transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z);
-        target = GameObject.FindGameObjectWithTag("PoliceNPC");
+        target = GameObject.FindGameObjectWithTag("PoliceNPC") ? GameObject.FindGameObjectWithTag("PoliceNPC") : GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
