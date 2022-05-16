@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Image healthBar;
-
     public HealthController carHealth;
     public GameObject perk;
     public int score;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
         inputManager = GetComponentInParent<InputManager>();
         if (inputManager)
             inputManager.onUsePerk += usePerk;
-        
+
         explosion = (GameObject)Resources.Load("Explosion", typeof(GameObject));
     }
 

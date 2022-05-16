@@ -9,6 +9,7 @@ public class AlternativePolice : MonoBehaviour
     private Rigidbody myBody;
     [SerializeField]
     private float speed = 40f, rotatingSpeed = 20f;
+    Vector3 pointToTarget;
 
     void Start()
     {
@@ -18,7 +19,10 @@ public class AlternativePolice : MonoBehaviour
 
     void Update()
     {
-        Vector3 pointToTarget = transform.position - target.transform.position;
+        if (target)
+        {
+            pointToTarget = transform.position - target.transform.position;
+        }
         pointToTarget.Normalize();
 
         float value = Vector3.Cross(pointToTarget, transform.forward).y;
