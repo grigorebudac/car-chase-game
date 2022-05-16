@@ -7,13 +7,15 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField]
     private AudioSource hit;
-    
+
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Props") return;
+        PlayerController playerController = gameObject.GetComponent<PlayerController>();
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
-        HealthController ownHealthController = gameObject.GetComponent<PlayerController>().carHealth;
+        HealthController ownHealthController = playerController.carHealth;
 
-        if (gameObject.GetComponent<PlayerController>().isUsingShield)
+        if (playerController.isUsingShield)
         {
             return;
         }
@@ -26,7 +28,7 @@ public class PlayerCollision : MonoBehaviour
             case "Building":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
-                
+
                 if (hit != null)
                 {
                     hit.Play();
@@ -34,9 +36,8 @@ public class PlayerCollision : MonoBehaviour
                 break;
             case "PoliceNPC":
             case "PolicePlayer":
-                damageToTake = 100f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
-                
+
                 if (hit != null)
                 {
                     hit.Play();
@@ -51,7 +52,30 @@ public class PlayerCollision : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Props") return;
+        if (other.gameObject.tag == "Building")
+        {
+            HealthController healthController = gameObject.GetComponent<HealthController>();
+            healthController.TakeDamage(100f);
+        }
 
+        if (other.gameObject.GetComponentInParent<ECCar>())
+        {
+            HealthController healthController = gameObject.GetComponent<HealthController>();
+            healthController.TakeDamage(25f);
+
+            StartCoroutine(EFlash(gameObject));
+        }
+    }
+
+    IEnumerator EFlash(GameObject gameObject)
+    {
+        MeshRenderer meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
+        Color orgColor = meshRenderer.material.color;
+
+        meshRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(.15f);
+        meshRenderer.material.color = orgColor;
     }
 
     private float GetHitByWallDamage(float carSpeed)
