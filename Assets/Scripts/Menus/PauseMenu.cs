@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool isGamePaused = false;
 
     public GameObject pauseMenuUI;
+    public TextMeshProUGUI audioText;
 
     private float tempVolume;
 
@@ -39,6 +41,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Pause() {
+        SetAudioBtnText();
+
         tempVolume = AudioListener.volume;
         AudioListener.volume = 0f;
 
@@ -63,8 +67,8 @@ public class PauseMenu : MonoBehaviour
         this.Resume();
     }
 
-    public void ToggleEffects()
+    private void SetAudioBtnText()
     {
-
+        audioText.text = AudioListener.volume == 0f ? "Enable Audio" : "Disable Audio";
     }
 }
