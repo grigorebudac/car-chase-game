@@ -34,12 +34,21 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void Resume() {
-        AudioListener.volume = tempVolume;
+    public void Resume(bool modifyVolume) {
+        if(modifyVolume)
+        {
+            AudioListener.volume = tempVolume;
+        }
 
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
+    }
+
+
+    public void Resume()
+    {
+        this.Resume(true);
     }
 
     public void Pause() {
@@ -55,7 +64,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        Resume();
+        Resume(false);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
