@@ -17,7 +17,7 @@ public class SpawnPoliceCar : MonoBehaviour
 
     private void Update()
     {
-        if (ShouldSpawn())
+        if (ShouldSpawn() && playerTarget)
         {
             Spawn();
         }
@@ -26,9 +26,19 @@ public class SpawnPoliceCar : MonoBehaviour
     public void Spawn()
     {
         float x = playerTarget.position.x - Random.Range(10, 30);
+        float y = 0.5f;
         float z = playerTarget.position.z - Random.Range(10, 30);
 
-        Vector3 spawnPosition = new Vector3(x, 1f, z);
+        Vector3 spawnPosition = new Vector3(x, y, z);
+
+        if (Physics.CheckSphere(new Vector3(x, 0, z), 0))
+        {
+            x = playerTarget.position.x - Random.Range(10, 30);
+            y = 0.5f;
+            z = playerTarget.position.z - Random.Range(10, 30);
+            spawnPosition = new Vector3(x, y, z);
+        }
+
         Instantiate(prefab, spawnPosition, Quaternion.identity);
 
         nextSpawnTime = Time.time + spawnDelay;

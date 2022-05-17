@@ -4,8 +4,8 @@ public class MissilePerk : BasePerk
 {
     public override string perkIcon { get { return "Missile"; } }
 
-    public override void usePerk(GameObject perk, GameObject gameObject)
+    public override void usePerk(GameObject perk, GameObject targetGameObject)
     {
-        Instantiate(perk, gameObject.transform.position - new Vector3(10, 0, 10), gameObject.transform.rotation);
+        Instantiate(perk, targetGameObject.transform.position + (targetGameObject.transform.forward * 10f), targetGameObject.transform.rotation);
     }
 }

@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Image healthBar;
-
     public HealthController carHealth;
     public GameObject perk;
     public int score;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
         inputManager = GetComponentInParent<InputManager>();
         if (inputManager)
             inputManager.onUsePerk += usePerk;
-        
+
         explosion = (GameObject)Resources.Load("Explosion", typeof(GameObject));
     }
 
@@ -40,7 +39,9 @@ public class PlayerController : MonoBehaviour
 
         if (carHealth.GetHealth() <= 0)
         {
-        
+            PauseMenu pauseMenu = FindObjectOfType<PauseMenu>();
+            pauseMenu.ShowDeadMenu();
+
             GameObject explosionGameObject = Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(explosionGameObject, 2f);
             

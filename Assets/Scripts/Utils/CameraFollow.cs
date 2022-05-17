@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
-    private Transform car; 
+    private Transform car;
     public float distance = 6.4f;
     public float height = 1.4f;
     public float rotationDamping = 3.0f;
@@ -16,37 +16,41 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 rotationVector;
 
-    void LateUpdate(){
+    void LateUpdate()
+    {
         if (car)
         {
-        float wantedAngle = rotationVector.y;
-        float wantedHeight = car.position.y + height;
-        float myAngle = transform.eulerAngles.y;
-        float myHeight = transform.position.y;
+            float wantedAngle = rotationVector.y;
+            float wantedHeight = car.position.y + height;
+            float myAngle = transform.eulerAngles.y;
+            float myHeight = transform.position.y;
 
-        myAngle = Mathf.LerpAngle(myAngle, wantedAngle, rotationDamping * Time.deltaTime);
-        myHeight = Mathf.Lerp(myHeight, wantedHeight, heightDamping * Time.deltaTime);
+            myAngle = Mathf.LerpAngle(myAngle, wantedAngle, rotationDamping * Time.deltaTime);
+            myHeight = Mathf.Lerp(myHeight, wantedHeight, heightDamping * Time.deltaTime);
 
-        Quaternion currentRotation = Quaternion.Euler(0, myAngle, 0);
-        transform.position = car.position;
-        transform.position -= currentRotation * Vector3.forward * distance;
-        Vector3 temp = transform.position; //temporary variable so Unity doesn't complain
-        temp.y = myHeight;
-        transform.position = temp;
-        transform.LookAt(car);
+            Quaternion currentRotation = Quaternion.Euler(0, myAngle, 0);
+            transform.position = car.position;
+            transform.position -= currentRotation * Vector3.forward * distance;
+            Vector3 temp = transform.position; //temporary variable so Unity doesn't complain
+            temp.y = myHeight;
+            transform.position = temp;
+            transform.LookAt(car);
         }
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
         if (car)
         {
             Vector3 localVelocity = car.InverseTransformDirection(car.GetComponent<Rigidbody>().velocity);
-            if (localVelocity.z < -0.1f){
+            if (localVelocity.z < -0.1f)
+            {
                 Vector3 temp = rotationVector; //because temporary variables seem to be removed after a closing bracket "}" we can use the same variable name multiple times.
                 temp.y = car.eulerAngles.y + 180;
                 rotationVector = temp;
             }
-            else{
+            else
+            {
                 Vector3 temp = rotationVector;
                 temp.y = car.eulerAngles.y;
                 rotationVector = temp;

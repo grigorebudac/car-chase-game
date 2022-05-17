@@ -37,6 +37,7 @@ public class MissileController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.transform.Rotate(90f, 0f, 0f);
         transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z);
+        target = GameObject.FindGameObjectWithTag("PoliceNPC") ? GameObject.FindGameObjectWithTag("PoliceNPC") : GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -80,7 +81,7 @@ public class MissileController : MonoBehaviour
         }
         else
         {
-            rb.AddForce(transform.up * speed, ForceMode.Impulse);
+            rb.AddForce(transform.up * speed * 2f, ForceMode.Impulse);
         }
     }
 
@@ -105,14 +106,4 @@ public class MissileController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-
-            Gizmos.color = Color.green;
-            //Draw a Ray forward from GameObject toward the maximum distance
-            Gizmos.DrawRay(transform.position, transform.up * distance);
-            //Draw a cube at the maximum distance
-            Gizmos.DrawWireSphere(transform.position + transform.up * distance, sphereRadius);
-        
-    }
 }

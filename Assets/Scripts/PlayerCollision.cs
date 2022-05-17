@@ -10,15 +10,16 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.tag == "Props") return;
+        PlayerController playerController = gameObject.GetComponent<PlayerController>();
         PrometeoCarController car = gameObject.GetComponent<PrometeoCarController>();
-        HealthController ownHealthController = gameObject.GetComponent<PlayerController>().carHealth;
+        HealthController ownHealthController = playerController.carHealth;
 
-        if (gameObject.GetComponent<PlayerController>().isUsingShield)
+        if (playerController.isUsingShield)
         {
             return;
         }
-        
+
         float damageTaken = 0;
         float damageToTake = 100f;
 
@@ -34,9 +35,7 @@ public class PlayerCollision : MonoBehaviour
                 }
                 break;
             case "PoliceNPC":
-                break;
             case "PolicePlayer":
-                damageToTake = 100f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
                 
                 if (hitSound != null)
@@ -49,6 +48,29 @@ public class PlayerCollision : MonoBehaviour
         }
 
         ownHealthController.TakeDamage(damageTaken);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        PlayerController playerController = gameObject.GetComponent<PlayerController>();
+        if (playerController && playerController.isUsingShield)
+        {
+            return;
+        }
+
+        if (other.gameObject.tag == "Props") return;
+        if (other.gameObject.tag == "Building")
+        {
+            HealthController healthController = gameObject.GetComponent<HealthController>();
+            healthController.TakeDamage(100f);
+        }
+
+        if (other.gameObject.GetComponentInParent<ECCar>())
+        {
+            HealthController healthController = gameObject.GetComponent<HealthController>();
+            healthController.TakeDamage(25f);
+
+        }
     }
 
     private float GetHitByWallDamage(float carSpeed)
