@@ -12,6 +12,6 @@ public class PlayMenu : MonoBehaviour
 
     public void StartMultiplayer()
     {
-        SceneManager.LoadScene("Scenes/MapScene");
+        SceneManager.LoadScene("Scenes/MapSceneNight");
     }
 }
