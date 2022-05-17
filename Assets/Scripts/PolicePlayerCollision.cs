@@ -6,7 +6,7 @@ using System;
 public class PolicePlayerCollision : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource hit;
+    private AudioSource hitSound;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -21,19 +21,19 @@ public class PolicePlayerCollision : MonoBehaviour
             case "Building":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
-
-                if (hit != null)
+                
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             case "Player":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
-
-                if (hit != null)
+                
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             default:
@@ -42,12 +42,7 @@ public class PolicePlayerCollision : MonoBehaviour
 
         ownHealthController.TakeDamage(damageTaken);
     }
-
-    public void OnTriggerEnter(Collider other)
-    {
-
-    }
-
+    
     private float GetHitByWallDamage(float carSpeed)
     {
         float damage = carSpeed / 10f;

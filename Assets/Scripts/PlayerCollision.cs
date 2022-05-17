@@ -6,7 +6,7 @@ using System;
 public class PlayerCollision : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource hit;
+    private AudioSource hitSound;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,19 +28,19 @@ public class PlayerCollision : MonoBehaviour
             case "Building":
                 damageToTake = car ? car.carSpeed : 200f;
                 damageTaken = this.GetHitByWallDamage(damageToTake);
-
-                if (hit != null)
+                
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             case "PoliceNPC":
             case "PolicePlayer":
                 damageTaken = this.GetHitByPoliceCarDamage(damageToTake);
-
-                if (hit != null)
+                
+                if (hitSound != null)
                 {
-                    hit.Play();
+                    hitSound.Play();
                 }
                 break;
             default:
@@ -72,7 +72,6 @@ public class PlayerCollision : MonoBehaviour
 
         }
     }
-
 
     private float GetHitByWallDamage(float carSpeed)
     {

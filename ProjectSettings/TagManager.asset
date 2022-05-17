@@ -12,6 +12,7 @@ TagManager:
   - Collectable
   - Perk
   - Building
+  - Cash
   layers:
   - Default
   - TransparentFX

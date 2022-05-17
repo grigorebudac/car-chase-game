@@ -42,8 +42,9 @@ public class PlayerController : MonoBehaviour
             PauseMenu pauseMenu = FindObjectOfType<PauseMenu>();
             pauseMenu.ShowDeadMenu();
 
-            Instantiate(explosion, transform.position, Quaternion.identity);
-
+            GameObject explosionGameObject = Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(explosionGameObject, 2f);
+            
             Destroy(gameObject);
         }
     }
