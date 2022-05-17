@@ -1,4 +1,6 @@
-Build on the GitHub Pages
+Build on the GitHub Pages: 
+
+https://grigorebudac.github.io/car-chase-game/
 
 Used assets:
 
