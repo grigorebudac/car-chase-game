@@ -25,7 +25,9 @@ public class NPCController : MonoBehaviour
 
         if (carHealth.GetHealth() <= 0)
         {
-            Instantiate(explosion, transform.position, Quaternion.identity);
+            GameObject explosionGameObject = Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(explosionGameObject, 2f);
+
             Destroy(gameObject);
         }
     }
